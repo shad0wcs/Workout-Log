@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from models import User, Exercise, Workout
+from app.models import User, Exercise, Workout
 from app.schemas import UserCreate, ExerciseCreate
 from app.auth import hash_password
 

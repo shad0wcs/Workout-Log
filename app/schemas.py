@@ -1,8 +1,8 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr, Field
 from datetime import datetime
 from enum import Enum
 
-class WorkoutDificulty(str, Enum):
+class WorkoutDifficulty(str, Enum):
     easy = 'easy'
     medium = 'medium'
     hard = 'hard'
@@ -10,24 +10,24 @@ class WorkoutDificulty(str, Enum):
 
 class ExerciseCreate(BaseModel):
     title: str
-    description: str
+    description: str | None = None
 
 
 class UserCreate(BaseModel):
     email: str
-    password: str
+    password: str = Field(min_length=8)
 
 
 class UserResponse(BaseModel):
     id: int
-    email: str
+    email: EmailStr
 
     class Config:
         from_attributes = True
 
 
 class UserLogin(BaseModel):
-    email: str
+    email: EmailStr
     password: str
 
 
